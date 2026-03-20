@@ -1,22 +1,8 @@
-const CACHE_NAME = "todo-pwa-v1";
-const urlsToCache = [
-  "index.html",
-  "manifest.json",
-  "icon-192.png"
-];
 
-// Install
-self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+self.addEventListener("install", function(e) {
+  e.waitUntil("to-do-app-cache".then(function(cache){
+     return cache.addAll("index.html");
+  })
   );
 });
 
-// Fetch
-self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
-  );
-});
